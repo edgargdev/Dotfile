@@ -1,0 +1,46 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/edgargonzalez/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="kolo"
+
+plugins=(git, web-search)
+
+source $ZSH/oh-my-zsh.sh
+
+alias vi="vim"
+alias py="python3"
+alias me="vim ~/.zshrc"
+alias vime="vim ~/.vimrc"
+alias tmuxme="vim ~/.tmux.conf"
+alias webs="python3 -m http.server 4000"
+alias killrails="kill -9 $(lsof -i tcp:3000 -t)"
+alias vimgo="vim -u ~/.vimrc.go"
+alias ngrk="~/Downloads/./ngrok"
+alias mtest="ruby -r minitest/pride --verbose"
+alias g="google"
+alias pgstart="brew services start postgresql"
+alias pgstop="brew services stop postgresql"
+alias elint="node_modules/eslint/bin/eslint.js"
+# For GoLang
+export PATH="$HOME/Development/goworkspace/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+export clientSecret="0mMj1LwokkXnv1BCXDHQ0dH5"
+export clientID="754975649922-j1anol2frgcnoqp2tb0m8l7sc5i17puo.apps.googleusercontent.com"
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+ # Powerline
+# if [[ -r /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+#     source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# fi
+
+
+export NVM_DIR="/Users/edgargonzalez/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
