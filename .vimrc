@@ -11,18 +11,17 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set backspace=2
 set backspace=indent,eol,start
 
-set winwidth=110
-set winminwidth=40
-set winheight=30
-set winminheight=5
+" set winwidth=110
+" set winminwidth=40
+" set winheight=30
+" set winminheight=5
 	
 set nobackup
 set nowritebackup
 set noswapfile
+set wrap!
 
 
-execute pathogen#infect()
-"" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -40,17 +39,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-endwise'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'powerline/powerline'
-Plugin 'mattn/emmet-vim'
-Plugin 'othree/yajs.vim'
 Plugin 'fatih/vim-go'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ap/vim-buftabline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -104,3 +96,5 @@ let g:ctrlp_user_command = 'find %s -type f | grep -v "`cat ~/.ctrlpignore`"'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+nnoremap <C-N> :bnext<CR>
