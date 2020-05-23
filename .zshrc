@@ -28,13 +28,11 @@ alias pgstart="brew services start postgresql"
 alias pgstop="brew services stop postgresql"
 alias elint="node_modules/eslint/bin/eslint.js"
 # For GoLang
-export PATH="$HOME/Development/goworkspace/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
-export clientSecret="0mMj1LwokkXnv1BCXDHQ0dH5"
-export clientID="754975649922-j1anol2frgcnoqp2tb0m8l7sc5i17puo.apps.googleusercontent.com"
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+#export PATH="$HOME/Development/goworkspace/bin:$PATH"
+#export PATH="/usr/local/go/bin:$PATH"
+#export ANDROID_HOME=~/Library/Android/sdk
+#export PATH=${PATH}:${ANDROID_HOME}/tools
+#export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
  # Powerline
 # if [[ -r /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
@@ -42,5 +40,5 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 # fi
 
 
-export NVM_DIR="/Users/edgargonzalez/.nvm"
-[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="/Users/edgargonzalez/.nvm"
+#[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
