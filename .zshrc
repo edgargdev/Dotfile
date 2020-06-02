@@ -9,7 +9,7 @@ export ZSH=/Users/edgargonzalez/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="kolo"
 
-plugins=(git, web-search)
+plugins=(git web-search)
 
 source $ZSH/oh-my-zsh.sh
 
