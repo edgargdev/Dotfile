@@ -5,7 +5,6 @@ syntax on
 filetype off
 set splitright
 "...
-colorscheme distinguished 
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set backspace=2
@@ -43,6 +42,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-commentary'
 Plugin 'ap/vim-buftabline'
+Plugin 'victorze/foo'
+Plugin 'liuchengxu/space-vim-dark'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,6 +61,11 @@ filetype plugin indent on    " required
 
 " Powerline
 set rtp+=/Users/edgargonzalez/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+
+colorscheme space-vim-dark
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 " Always show statusline
 set laststatus=2
