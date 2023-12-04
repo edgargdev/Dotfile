@@ -1,3 +1,4 @@
+export ZSH_DISABLE_COMPFIX=true
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -9,14 +10,15 @@ export ZSH=/Users/edgargonzalez/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="muse"
 
-plugins=(git web-search)
+plugins=(git web-search aws)
 
 source $ZSH/oh-my-zsh.sh
 
-alias vi="vim"
+alias vi="nvim"
 alias py="python3"
 alias me="vim ~/.zshrc"
 alias vime="vim ~/.vimrc"
+alias vimrc="nvim ~/.config/nvim/init.lua"
 alias tmuxme="vim ~/.tmux.conf"
 alias webs="python3 -m http.server 4000"
 alias killrails="kill -9 $(lsof -i tcp:3000 -t)"
@@ -27,6 +29,7 @@ alias g="google"
 alias pgstart="brew services start postgresql"
 alias pgstop="brew services stop postgresql"
 alias elint="node_modules/eslint/bin/eslint.js"
+alias kc="kubectl"
 # For GoLang
 #export PATH="$HOME/Development/goworkspace/bin:$PATH"
 #export PATH="/usr/local/go/bin:$PATH"
@@ -42,3 +45,5 @@ alias elint="node_modules/eslint/bin/eslint.js"
 
 #export NVM_DIR="/Users/edgargonzalez/.nvm"
 #[ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export GOPATH=~/go
+eval $(thefuck --alias)
