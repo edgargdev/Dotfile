@@ -1,9 +1,9 @@
 set nocompatible              " be iMproved, required
-set relativenumber
 set number
 syntax on
 filetype off
 set splitright
+"...
 
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set backspace=2
