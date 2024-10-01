@@ -30,6 +30,8 @@ alias pgstart="brew services start postgresql"
 alias pgstop="brew services stop postgresql"
 alias elint="node_modules/eslint/bin/eslint.js"
 alias kc="kubectl"
+alias repos='cd $(find ~/projects/platform -maxdepth 1 -type d | fzf)'
+
 # For GoLang
 #export PATH="$HOME/Development/goworkspace/bin:$PATH"
 #export PATH="/usr/local/go/bin:$PATH"
