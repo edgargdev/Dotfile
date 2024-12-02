@@ -1,4 +1,4 @@
-local HEIGHT_RATIO = 0.8 -- You can change this
+local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.5
 
 --[[
@@ -164,6 +164,10 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Navigate buffers
+vim.keymap.set('n', '<Tab>', ':bnext<CR>')
+vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>')
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -320,6 +324,20 @@ require('lazy').setup({
     -- this is equalent to setup({}) function
   },
   { 'github/copilot.vim' },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    branch = 'canary',
+    dependencies = {
+      { 'zbirenbaum/copilot.lua' }, -- or github/copilot.vim
+      { 'nvim-lua/plenary.nvim' }, -- for curl, log wrapper
+    },
+    build = 'make tiktoken', -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+  { 'rest-nvim/rest.nvim' },
 
   -- NOTE: Plugins can specify dependencies.
   --
@@ -351,6 +369,7 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -602,14 +621,33 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         pyright = {},
+        terraformls = {},
+        elixirls = {
+          cmd = { '/usr/local/bin/elixir-ls/language_server.sh' },
+        },
         -- rust_analyzer = {},
         -- tsserver = {},
         yamlls = {
           yaml = {
             schemas = {
-              ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
-              -- ['https://raw.githubusercontent.com/awslabs/goformation/v7.14.9/schema/cloudformation.schema.json'] = 'src/cloudformation-templates/*',
+              kubernetes = '*.yaml',
+              ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
+              ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+              ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/*.{yml,yaml}',
+              ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+              ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+              ['http://json.schemastore.org/ansible-playbook'] = '*play*.{yml,yaml}',
+              ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
+              ['https://json.schemastore.org/dependabot-v2'] = '.github/dependabot.{yml,yaml}',
+              ['https://json.schemastore.org/gitlab-ci'] = '*gitlab-ci*.{yml,yaml}',
+              ['https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json'] = '*api*.{yml,yaml}',
+              ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = '*docker-compose*.{yml,yaml}',
+              ['https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json'] = '*flow*.{yml,yaml}',
             },
+            -- schemas = {
+            --   ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+            --   -- ['https://raw.githubusercontent.com/awslabs/goformation/v7.14.9/schema/cloudformation.schema.json'] = 'src/cloudformation-templates/*',
+            -- },
             hover = true,
             completition = true,
             customTags = {
@@ -882,7 +920,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'http' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -1028,3 +1066,6 @@ require('nvim-tree').setup {
     },
   },
 }
+
+vim.opt.termguicolors = true
+require('bufferline').setup {}
