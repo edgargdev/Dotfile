@@ -1,5 +1,11 @@
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.5
+local TAB_WIDTH = 4
+
+vim.opt.tabstop = TAB_WIDTH
+vim.opt.shiftwidth = TAB_WIDTH
+vim.opt.expandtab = true
+vim.bo.softtabstop = TAB_WIDTH
 
 --[[
 
