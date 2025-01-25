@@ -14,6 +14,10 @@ plugins=(git web-search aws)
 
 source $ZSH/oh-my-zsh.sh
 
+bindkey -e
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+
 alias vi="nvim"
 alias py="python3"
 alias me="vim ~/.zshrc"
