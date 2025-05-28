@@ -1,8 +1,5 @@
 local TAB_WIDTH = 4
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 vim.opt.tabstop = TAB_WIDTH
 vim.opt.shiftwidth = TAB_WIDTH
 vim.opt.expandtab = true

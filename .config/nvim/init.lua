@@ -1,6 +1,6 @@
 require("config.lazy")
 require("config.global")
+require("config.nvimtree")
 require("config.remaps")
 require("config.commands")
 require("config.bufferline")
-require("config.nvim-tree")
