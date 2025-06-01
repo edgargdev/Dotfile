@@ -1,0 +1,2 @@
+copy:
+	cp -r .config/ ~/
