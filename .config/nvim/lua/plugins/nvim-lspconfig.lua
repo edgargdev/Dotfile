@@ -160,7 +160,7 @@ return {
 			gopls = {},
 			pyright = {},
 			-- rust_analyzer = {},
-			-- tsserver = {},
+			tsserver = {},
 			yamlls = {
 				yaml = {
 					schemas = {
