@@ -56,6 +56,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			defaults = {
 				file_ignore_patterns = {
 					".git/",
+					"node_modules/",
+					".venv",
 				},
 			},
 			pickers = {
