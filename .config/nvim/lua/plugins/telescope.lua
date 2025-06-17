@@ -53,20 +53,26 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 			--   },
 			-- },
-			file_ignore_patterns = {
-				".git/",
-				"node_modules/",
-				".venv",
-				".idea",
-			},
 			pickers = {
 				find_files = {
 					hidden = true,
+					file_ignore_patterns = {
+						".git/",
+						"node_modules/",
+						".venv",
+						".idea",
+					},
 				},
 				live_grep = {
 					additional_args = function(opts)
 						return { "--hidden" } -- Include hidden files in live grep
 					end,
+					file_ignore_patterns = {
+						".git/",
+						"node_modules/",
+						".venv",
+						".idea",
+					},
 				},
 			},
 			extensions = {
