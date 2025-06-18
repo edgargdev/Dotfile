@@ -49,3 +49,4 @@ keybind = super+alt+k=goto_split:up
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
+split-divider-color = "white"
