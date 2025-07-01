@@ -31,4 +31,9 @@ local function delete_buffers()
 	end
 end
 
+local function open_nvim_tree()
+	require("nvim-tree.api").tree.open()
+end
+
 vim.keymap.set("n", "<leader>z", delete_buffers, { silent = true, desc = "Delete all non-windowed buffers" })
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
