@@ -7,6 +7,6 @@
 
 ### Todo
 
-- Add keymap for gitsigns blame
+- ~~Add keymap for gitsigns blame~~
 - add dap and configure it for javascript
 - get copilot chat keymap working
