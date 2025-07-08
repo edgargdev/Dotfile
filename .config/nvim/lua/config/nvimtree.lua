@@ -29,12 +29,12 @@ require("nvim-tree").setup({
 		group_empty = true,
 	},
 	filters = {
-		dotfiles = true,
-		custom = {
-			"node_modules",
-			".git/",
-			".venv",
-			"venv",
-		},
+		dotfiles = false,
+		-- custom = {
+		-- 	"node_modules",
+		-- 	".git/",
+		-- 	".venv",
+		-- 	"venv",
+		-- },
 	},
 })
