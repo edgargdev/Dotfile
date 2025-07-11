@@ -48,14 +48,18 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			-- You can put your default mappings / updates / etc. in here
 			--  All the info you're looking for is in `:help telescope.setup()`
 			--
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- },
+			defaults = {
+				find_files = {
+					path_display = { "filename_first" },
+				},
+				mappings = {
+					i = { ["<c-enter>"] = "to_fuzzy_refine" },
+				},
+			},
 			pickers = {
 				find_files = {
 					hidden = true,
+					path_display = { "filename_first" },
 					file_ignore_patterns = {
 						".git/",
 						"node_modules/",
@@ -67,6 +71,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					additional_args = function(opts)
 						return { "--hidden" } -- Include hidden files in live grep
 					end,
+					path_display = { "filename_first" },
 					file_ignore_patterns = {
 						".git/",
 						"node_modules/",
@@ -74,10 +79,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						".idea",
 					},
 				},
+				lsp_references = {
+					path_display = { "filename_first" },
+				},
 			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
+				},
+				fzf = {
+					fuzzy = true, -- false will only do exact matching
+					override_generic_sorter = true, -- override the generic sorter
+					override_file_sorter = true, -- override the file sorter
+					case_mode = "smart_case", -- or "ignore" or "respect_case"
 				},
 			},
 		})
@@ -85,7 +99,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- Enable Telescope extensions if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-
+		--
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })

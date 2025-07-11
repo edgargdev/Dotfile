@@ -50,3 +50,4 @@ keybind = super+alt+k=goto_split:up
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 split-divider-color = "white"
+scrollback-limit = 100000000
