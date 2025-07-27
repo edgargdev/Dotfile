@@ -7,12 +7,17 @@ return {
 			table.insert(opts.ensure_installed, "http")
 			rest_load = function()
 				require("telescope").load_extension("rest")
-				-- then use it, you can also use the `:Telescope rest select_env` command
 				require("telescope").extensions.rest.select_env()
 			end
-			--- When this keybind is hit, load the rest.nvim extension
 
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "json" },
+				callback = function()
+					vim.api.nvim_set_option_value("formatprg", "jq", { scope = "local" })
+				end,
+			})
 			vim.keymap.set("n", "<leader>v", rest_load, { desc = "Set RestNvim env" })
+			vim.keymap.set("n", "<leader>H", ":Rest run<CR>", { desc = "Run RestNvim request" })
 		end,
 	},
 }
