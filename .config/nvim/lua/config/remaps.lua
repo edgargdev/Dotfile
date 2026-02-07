@@ -40,3 +40,17 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- Todo comments remap leader td
 vim.keymap.set("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Open todo comments in telescope" })
+
+-- Run current file with shebang (Space+rs)
+vim.keymap.set("n", "<leader>rs", function()
+	local file = vim.fn.expand("%:p")
+	local first_line = vim.fn.getline(1)
+
+	if first_line:match("^#!") then
+		vim.cmd("w")
+		vim.cmd("split | terminal " .. file)
+		vim.cmd("startinsert")
+	else
+		vim.notify("File does not have a shebang (#!)", vim.log.levels.WARN)
+	end
+end, { desc = "Run current file (requires shebang)" })
