@@ -30,14 +30,5 @@ return {
 		vim.api.nvim_set_keymap("n", "<leader>lv", ":VimtexView<CR>", { noremap = true, silent = true })
 		-- set key mapping for :VimtexTocOpen
 		vim.api.nvim_set_keymap("n", "<leader>lt", ":VimtexTocOpen<CR>", { noremap = true, silent = true })
-
-		-- Autocommand to fold LaTeX sections on file open under cursor
-		vim.api.nvim_create_autocmd("BufReadPost", {
-			pattern = "*.tex",
-			callback = function()
-				vim.cmd("normal zM") -- Close all folds
-				vim.cmd("normal zR") -- Open top-level folds
-			end,
-		})
 	end,
 }
