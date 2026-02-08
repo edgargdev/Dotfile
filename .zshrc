@@ -20,13 +20,13 @@ bindkey '^[[1;3D' backward-word
 
 alias vi="nvim"
 alias py="python3"
-alias me="vim ~/.zshrc"
-alias vime="vim ~/.vimrc"
+alias me="nvim ~/.zshrc"
+alias vime="nvim ~/.vimrc"
 alias vimrc="nvim ~/.config/nvim/init.lua"
-alias tmuxme="vim ~/.tmux.conf"
+alias tmuxme="nvim ~/.tmux.conf"
 alias webs="python3 -m http.server 4000"
 alias killrails="kill -9 $(lsof -i tcp:3000 -t)"
-alias vimgo="vim -u ~/.vimrc.go"
+alias vimgo="nvim -u ~/.vimrc.go"
 alias ngrk="~/Downloads/./ngrok"
 alias mtest="ruby -r minitest/pride --verbose"
 alias g="google"
@@ -49,3 +49,18 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 source ~/.functions
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# export PATH="$PATH:/usr/local/go/bin"
+# export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
+#
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
+# export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+#
+# set synctex-editor-command "gvim --servername VIM --remote-silent +%{line} %{input}"
+export CLASS_DIR=math6316

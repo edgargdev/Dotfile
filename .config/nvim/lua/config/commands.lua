@@ -32,7 +32,10 @@ local function delete_buffers()
 end
 
 local function open_nvim_tree()
-	require("nvim-tree.api").tree.open()
+	-- Only open tree if no file argument was provided
+	if vim.fn.argc() == 0 or vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+		require("nvim-tree.api").tree.open()
+	end
 end
 
 vim.keymap.set("n", "<leader>z", delete_buffers, { silent = true, desc = "Delete all non-windowed buffers" })
