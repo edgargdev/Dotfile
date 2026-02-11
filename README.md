@@ -14,3 +14,7 @@
 - get copilot chat keymap working
 - debugger for react and node
 - lsp reference telescope fix it so it's now showing the entire file path
+- **TODO (2026-02-11)**: Re-add rest.nvim plugin for HTTP/REST API testing
+    - Requires proper setup of luarocks.nvim with Lua 5.1 compatibility
+    - Dependencies: dkjson, mimetypes, xml2lua
+    - Consider alternative: kulala.nvim (fewer dependencies)
