@@ -49,8 +49,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--  All the info you're looking for is in `:help telescope.setup()`
 			--
 			defaults = {
-				find_files = {
-					path_display = { "filename_first" },
+				path_display = { "smart" },
+				layout_config = {
+					horizontal = {
+						preview_width = 0.55,
+					},
 				},
 				mappings = {
 					i = { ["<c-enter>"] = "to_fuzzy_refine" },
@@ -59,7 +62,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			pickers = {
 				find_files = {
 					hidden = true,
-					path_display = { "filename_first" },
 					file_ignore_patterns = {
 						".git/",
 						"node_modules/",
@@ -71,7 +73,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					additional_args = function(opts)
 						return { "--hidden" } -- Include hidden files in live grep
 					end,
-					path_display = { "filename_first" },
 					file_ignore_patterns = {
 						".git/",
 						"node_modules/",
@@ -79,9 +80,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 						".idea",
 					},
 				},
-				lsp_references = {
-					path_display = { "filename_first" },
-				},
+				lsp_references = {},
 			},
 			extensions = {
 				["ui-select"] = {
