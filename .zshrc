@@ -63,4 +63,5 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 #
 # set synctex-editor-command "gvim --servername VIM --remote-silent +%{line} %{input}"
+export PATH="$PATH:/Library/TeX/texbin"
 export CLASS_DIR=math6316
