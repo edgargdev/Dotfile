@@ -42,6 +42,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- Telescope picker. This is really useful to discover what Telescope can
 		-- do as well as how to actually do it!
 
+		-- Custom path display that shows filename first
+		local function filename_first(_, path)
+			local tail = vim.fs.basename(path)
+			local parent = vim.fs.dirname(path)
+			if parent == "." then
+				return tail
+			end
+			return string.format("%s\t\t%s", tail, parent)
+		end
+
 		-- [[ Configure Telescope ]]
 		-- See `:help telescope` and `:help telescope.setup()`
 		require("telescope").setup({
@@ -49,7 +59,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--  All the info you're looking for is in `:help telescope.setup()`
 			--
 			defaults = {
-				path_display = { "smart" },
+				path_display = filename_first,
 				layout_config = {
 					horizontal = {
 						preview_width = 0.55,
