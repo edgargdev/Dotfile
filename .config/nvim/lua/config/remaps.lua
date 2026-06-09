@@ -54,3 +54,12 @@ vim.keymap.set("n", "<leader>rs", function()
 		vim.notify("File does not have a shebang (#!)", vim.log.levels.WARN)
 	end
 end, { desc = "Run current file (requires shebang)" })
+
+-- Test runner keymaps
+local test_runner = require("config.test-runner")
+vim.keymap.set("n", "<leader>tf", function()
+	test_runner.run_file_tests()
+end, { desc = "[T]est current [F]ile" })
+vim.keymap.set("n", "<leader>tt", function()
+	test_runner.run_test_at_cursor()
+end, { desc = "[T]est [T]his (at cursor)" })
