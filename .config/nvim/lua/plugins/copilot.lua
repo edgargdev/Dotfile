@@ -1,5 +1,6 @@
 return {
 	"github/copilot.vim",
+	event = "InsertEnter",
 	config = function()
 		vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>", { desc = "Enable Copilot" })
 		vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>", { desc = "Disable Copilot" })
