@@ -1,7 +1,7 @@
 return {
 	"lervag/vimtex",
 	lazy = false, -- we don't want to lazy load VimTeX
-	-- tag = "v2.15", -- uncomment to pin to a specific release
+	tag = "v2.17", -- latest VimTeX release that supports Neovim < 0.12.4
 	init = function()
 		-- OS-specific viewer configuration
 		if vim.fn.has("mac") == 1 then
@@ -26,9 +26,8 @@ return {
 
 		vim.g.vimtex_syntax_enabled = 0
 
-		-- set key mapping for :VimtexView
-		vim.api.nvim_set_keymap("n", "<leader>lv", ":VimtexView<CR>", { noremap = true, silent = true })
-		-- set key mapping for :VimtexTocOpen
-		vim.api.nvim_set_keymap("n", "<leader>lt", ":VimtexTocOpen<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>ll", "<cmd>VimtexCompile<CR>", { silent = true, desc = "Toggle VimTeX compile" })
+		vim.keymap.set("n", "<leader>lv", "<cmd>VimtexView<CR>", { silent = true, desc = "View VimTeX PDF" })
+		vim.keymap.set("n", "<leader>lt", "<cmd>VimtexTocOpen<CR>", { silent = true, desc = "Open VimTeX TOC" })
 	end,
 }
