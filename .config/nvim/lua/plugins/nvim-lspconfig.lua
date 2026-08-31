@@ -3,8 +3,8 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
-		{ "mason-org/mason.nvim", version = "^1.0.0" }, -- NOTE: Must be loaded before dependants
-		{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+		{ "mason-org/mason.nvim", version = "^2.0.0" }, -- NOTE: Must be loaded before dependants
+		{ "mason-org/mason-lspconfig.nvim", version = "^2.0.0" },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 
 		-- Useful status updates for LSP.
@@ -208,27 +208,25 @@ return {
 
 		-- You can add other tools here that you want Mason to install
 		-- for you, so that they are available from within Neovim.
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
+		local ensure_installed = {
 			"stylua", -- Used to format Lua code
-		})
+		}
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+		for server_name, server in pairs(servers) do
+			-- This handles overriding only values explicitly passed
+			-- by the server configuration above. Useful when disabling
+			-- certain features of an LSP (for example, turning off formatting for tsserver)
+			local config = {
+				capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+				settings = server,
+			}
+			vim.lsp.config(server_name, config)
+		end
+
 		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					local config = {
-						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
-						settings = server,
-					}
-					vim.lsp.config(server_name, config)
-					vim.lsp.enable(server_name)
-				end,
-			},
+			ensure_installed = vim.tbl_keys(servers or {}),
+			automatic_enable = true,
 		})
 	end,
 }
