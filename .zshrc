@@ -35,6 +35,24 @@ alias pgstop="brew services stop postgresql"
 alias elint="node_modules/eslint/bin/eslint.js"
 alias kc="kubectl"
 alias repos='cd $(find ~/projects -maxdepth 1 -type d | fzf)'
+
+# Fuzzy-find a file or directory, then jump to its directory.
+fcd() {
+  local root="${1:-.}" selected
+  root="${root:A}"
+  [[ -d "$root" ]] || { print -u2 -- "Not a directory: $root"; return 1; }
+
+  selected=$(
+    find "$root" \( -type d -o -type f \) -print0 |
+      fzf --read0 --print0 --prompt='Jump to location > '
+  ) || return
+  selected="${selected%$'\0'}"
+  [[ -n "$selected" ]] || return
+
+  [[ -d "$selected" ]] || selected="${selected:h}"
+  builtin cd -- "$selected"
+}
+
 # For WSL
 #alias pbcopy='xclip -selection clipboard'
 #alias pbpaste='xclip -selection clipboard -o'
