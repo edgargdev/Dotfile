@@ -12,7 +12,14 @@ plugins=(git web-search aws nvm)
 # Homebrew completions must be on fpath before omz runs compinit
 [[ -d /opt/homebrew/share/zsh/site-functions ]] && fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
-source $ZSH/oh-my-zsh.sh
+[[ -r $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
+
+# Default node's bin on PATH without loading nvm, so global npm CLIs (cdk, snyk, ...) and nvim plugins find node
+if [[ -r ~/.nvm/alias/default ]]; then
+  nvm_default=(~/.nvm/versions/node/v${$(<~/.nvm/alias/default)#v}*(N/nOn[1]))
+  (( $#nvm_default )) && path=($nvm_default/bin $path)
+  unset nvm_default
+fi
 
 export EDITOR=nvim
 export LESS=-RX
