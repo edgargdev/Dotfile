@@ -1,18 +1,21 @@
 export ZSH_DISABLE_COMPFIX=true
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="muse"
+ZSH_THEME="robbyrussell"
 
-plugins=(git web-search aws)
+# nvm loads on first use of node/npm/nvm instead of at startup
+zstyle ':omz:plugins:nvm' lazy yes
+plugins=(git web-search aws nvm)
+
+# Homebrew completions must be on fpath before omz runs compinit
+[[ -d /opt/homebrew/share/zsh/site-functions ]] && fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
 source $ZSH/oh-my-zsh.sh
+
+export EDITOR=nvim
+export LESS=-RX
 
 bindkey -e
 bindkey '^[[1;3C' forward-word
@@ -25,7 +28,6 @@ alias vime="nvim ~/.vimrc"
 alias vimrc="nvim ~/.config/nvim/init.lua"
 alias tmuxme="nvim ~/.tmux.conf"
 alias webs="python3 -m http.server 4000"
-alias killrails="kill -9 $(lsof -i tcp:3000 -t)"
 alias vimgo="nvim -u ~/.vimrc.go"
 alias ngrk="~/Downloads/./ngrok"
 alias mtest="ruby -r minitest/pride --verbose"
@@ -53,33 +55,19 @@ fcd() {
   builtin cd -- "$selected"
 }
 
-# For WSL
-#alias pbcopy='xclip -selection clipboard'
-#alias pbpaste='xclip -selection clipboard -o'
+# Machine-local helpers (not in this repo); sourced after the aliases above so they can override them
+for file in ~/.{functions,aliases,aliases_platform}; do
+  [[ -r "$file" && -f "$file" ]] && source "$file"
+done
+unset file
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
-export GOPATH=~/go
+(( $+commands[thefuck] )) && eval "$(thefuck --alias)"
+# fzf >= 0.48 ships its own zsh integration; older versions fall back in the OS file
+(( $+commands[fzf] )) && source <(fzf --zsh 2>/dev/null)
 
-eval $(thefuck --alias)
-
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-source ~/.functions
-
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-
-# export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-# export PATH="$PATH:/usr/local/go/bin"
-# export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
-#
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init - bash)"
-# export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
-#
-# set synctex-editor-command "gvim --servername VIM --remote-silent +%{line} %{input}"
-export PATH="$PATH:/Library/TeX/texbin"
-export CLASS_DIR=math6316
+# OS-specific config (installed by `make zsh`), then secrets/work config that never goes in this repo
+[[ -r ~/.zshrc.os ]] && source ~/.zshrc.os
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
